@@ -990,7 +990,6 @@ class Health(Host):
                 elif const.SERVER_POD_NAME_PREFIX in hostname:
                     prefix = const.SERVER_POD_NAME_PREFIX
                 hostname = hostname + "." + prefix + const.POD_HCTL_POSTFIX
-                LOG.info("Hostname is : %s", hostname)
                 for node in hctl_output["nodes"]:
                     if hostname == node["name"]:
                         services = node["svcs"]

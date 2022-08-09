@@ -203,6 +203,9 @@ class TestDataPodFailure:
             LOGGER.info("Cleanup: Prerequisite set successfully")
 
             LOGGER.info("Cleanup: Deploying the Cluster")
+            LOGGER.debug("Adding HA pod delay workaround")
+            cmd_ha = "export CORTX_DEPLOY_HA_TIMEOUT=1000"
+            self.node_master_list[0].execute_cmd(cmd=cmd_ha)
             resp_cls = self.deploy_lc_obj.deploy_cluster(self.node_master_list[0],
                                                          const.K8S_SCRIPTS_PATH)
             assert_utils.assert_true(resp_cls[0], resp_cls[1])
